@@ -1,10 +1,17 @@
 from django.shortcuts import render
 from django.http import HttpResponse
+from .models import Bb
 
 def index(request):
-	return HttpResponse('this is list of advertisement')
+	s = 'list of advertisement \r\n\r\n\r\n'
+	for bb in Bb.objects.order_by('-published'):
+		s += bb.title + '\r\n' + bb.content + '\r\n\r\n'
+	return HttpResponse( s, content_type = 'text/plain; charset=utf-8')
 
 	
 def vova(request):
 	return HttpResponse('he is Vova')
 # Create your views here.
+
+
+
