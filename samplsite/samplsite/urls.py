@@ -17,10 +17,13 @@ from django.contrib import admin
 from django.urls import path, include
 from bboard.views import index
 from bboard.views import vova
+from django.contrib.auth.views import LoginView
+
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('bboard/', include('bboard.urls')),
     path('bboard2/', vova),
     path('bboard3/', index),
+    path('accounts/login/', LoginView.as_view(), name='login')
 ]
