@@ -18,12 +18,17 @@ from django.urls import path, include
 from bboard.views import index
 from bboard.views import vova
 from django.contrib.auth.views import LoginView
-
+from django.contrib.auth.views import LogoutView
+from django.contrib.auth.views import PasswordChangeView
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('bboard/', include('bboard.urls')),
     path('bboard2/', vova),
     path('bboard3/', index),
-    path('accounts/login/', LoginView.as_view(), name='login')
+    path('accounts/login/', LoginView.as_view(), name='login'),
+    path('accounts/logout/', LogoutView.as_view(), name='logout'),
+    path('accounts/password_change/', PasswordChangeView.as_view(), name='change_password'),
 ]
+
+LOGOUT_REDIRECT_URL = 'bboard2/'
